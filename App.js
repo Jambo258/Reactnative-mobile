@@ -1,20 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  setStatusBarNetworkActivityIndicatorVisible,
+  StatusBar,
+} from "expo-status-bar";
+import React, { useEffect, useState } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator,
+  Button,
+  Alert,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function App() {
+import Homepage from "./Homepage";
+import Secondpage from "./Secondpage";
+
+const Stack = createNativeStackNavigator();
+
+export default App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Homepage}
+          options={{
+            title: "Bitcoin value fetch application",
+            headerStyle: {
+              backgroundColor: "pink",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Secondpage"
+          component={Secondpage}
+          options={{
+            title: "Bitcoin value in chart",
+            headerStyle: {
+              backgroundColor: "pink",
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
